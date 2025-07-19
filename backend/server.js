@@ -7,7 +7,7 @@ require('dotenv').config(); // Load environment variables
 const app = express();
 const PORT = 5000;
 
-// 🆕 Use CORS middleware
+//  Use CORS middleware
 app.use(cors({
   origin: 'http://localhost:3000', // Allow only your React app
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
