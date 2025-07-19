@@ -7,13 +7,13 @@ const crypto = require('crypto'); // For signature verification
 // Load environment variables
 require('dotenv').config();
 
-// ✅ Initialize Razorpay instance using .env
+//  Initialize Razorpay instance using .env
 const instance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_SECRET,
 });
 
-// ✅ POST /api/bookings - Create a new booking
+//  POST /api/bookings - Create a new booking
 router.post('/bookings', async (req, res) => {
   const { name, email, quantity } = req.body;
 
@@ -33,7 +33,7 @@ router.post('/bookings', async (req, res) => {
   }
 });
 
-// ✅ GET /api/bookings - Fetch all bookings
+//  GET /api/bookings - Fetch all bookings
 router.get('/bookings', async (req, res) => {
   try {
     const bookings = await Booking.find();
@@ -43,7 +43,7 @@ router.get('/bookings', async (req, res) => {
   }
 });
 
-// ✅ POST /api/payments - Initiate Razorpay payment
+//  POST /api/payments - Initiate Razorpay payment
 router.post('/payments', async (req, res) => {
   const { amount, currency } = req.body;
 
@@ -66,7 +66,7 @@ router.post('/payments', async (req, res) => {
   }
 });
 
-// ✅ POST /api/payments/confirm - Confirm payment
+//  POST /api/payments/confirm - Confirm payment
 router.post('/payments/confirm', async (req, res) => {
   const { razorpay_payment_id, razorpay_order_id, razorpay_signature, bookingId } = req.body;
 
@@ -75,7 +75,7 @@ router.post('/payments/confirm', async (req, res) => {
   }
 
   try {
-    // ✅ Verify payment signature
+    // Verify payment signature
     const expectedSignature = crypto
       .createHmac('sha256', instance.key_secret)
       .update(`${razorpay_order_id}|${razorpay_payment_id}`)
@@ -85,7 +85,7 @@ router.post('/payments/confirm', async (req, res) => {
       return res.status(400).json({ message: 'Invalid payment signature' });
     }
 
-    // ✅ Update booking
+    // Update booking
     const booking = await Booking.findById(bookingId);
     if (!booking) {
       return res.status(404).json({ message: 'Booking not found' });
@@ -103,7 +103,7 @@ router.post('/payments/confirm', async (req, res) => {
   }
 });
 
-// ✅ GET /api/ - Health check or test route
+// GET /api/ - Health check or test route
 router.get('/', (req, res) => {
   res.send('API is running...');
 });
