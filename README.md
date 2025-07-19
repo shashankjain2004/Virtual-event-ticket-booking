@@ -16,3 +16,22 @@ A full-stack event ticket booking system built with:
 - dotenv for environment variables
 
 ## 📦 Folder Structure
+
+
+## 🛠️ How to Run
+
+### 1. Start Backend
+
+bash
+- cd backend
+- npm install
+- npm start
+
+### 2. Start Frontend
+
+bash
+- cd frontend
+- npm install
+- npm start
+
+
