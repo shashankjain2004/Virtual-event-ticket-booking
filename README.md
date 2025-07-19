@@ -1,6 +1,6 @@
-# 🎟️ Event Ticket Booking System
+# 🎟️ Virtual Event Ticket Booking System
 
-A full-stack event ticket booking system built with:
+A full-stack Virtual event ticket booking system built with:
 - **React** (Frontend)
 - **Node.js + Express** (Backend)
 - **MongoDB** (Database)
